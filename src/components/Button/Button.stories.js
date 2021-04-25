@@ -28,6 +28,6 @@ export const Primary = () => {
 
   return <Button color={value}>Button</Button>;
 };
-// export const Secondary = () => <Button secondary>Button</Button>;
+export const Secondary = () => <Button secondary>Button</Button>;
 
-// Primary.storyName = 'I am the primary Button';
+Primary.storyName = 'I am the primary Button';
