@@ -1,12 +1,33 @@
 import React from 'react';
 import Button from './Button';
+import { withKnobs, select } from '@storybook/addon-knobs';
+
+// export default {
+//   title: 'Button',
+//   component: Button,
+// };
 
 export default {
-  title: 'Button',
-  component: Button,
+  title: 'Storybook Knobs',
+  decorators: [withKnobs],
 };
 
-export const Primary = () => <Button>Button</Button>;
-export const Secondary = () => <Button secondary>Button</Button>;
+export const Primary = () => {
+  const label = 'Colors';
+  const options = {
+    Red: 'red',
+    Blue: 'blue',
+    Yellow: 'yellow',
+    Rainbow: ['red', 'orange', 'etc'],
+    None: null,
+  };
 
-Primary.storyName = 'I am the primary Button';
+  const defaultValue = 'red';
+  const groupId = 'GROUP-ID1';
+  const value = select(label, options, defaultValue, groupId);
+
+  return <Button color={value}>Button</Button>;
+};
+// export const Secondary = () => <Button secondary>Button</Button>;
+
+// Primary.storyName = 'I am the primary Button';
