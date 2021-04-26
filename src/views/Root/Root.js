@@ -4,6 +4,8 @@ import Button from 'components/atoms/Button/Button';
 import GlobalStyle from 'theme/GlobalStyle';
 import { theme } from 'theme/mainTheme';
 import Input from 'components/atoms/Input/Input';
+import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
+import Card from 'components/molecules/Card';
 
 function Root() {
   return (
@@ -11,7 +13,9 @@ function Root() {
       <GlobalStyle />
       <ThemeProvider theme={theme}>
         <>
+          <Card cardType='twitter' />
           <h1>Hello Karol</h1>
+          <ButtonIcon icon />
           <Input search />
           <Input />
           <Button>Close / Save</Button>
