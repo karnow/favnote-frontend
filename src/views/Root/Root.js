@@ -13,7 +13,7 @@ function Root() {
       <GlobalStyle />
       <ThemeProvider theme={theme}>
         <>
-          <Card cardType='twitter' />
+          <Card cardType='article' />
           <h1>Hello Karol</h1>
           <ButtonIcon icon />
           <Input search />
