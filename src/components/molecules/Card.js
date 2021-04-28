@@ -19,7 +19,7 @@ const StyledWrapper = styled.div`
 const InnerWrapper = styled.div`
   position: relative;
   padding: 17px 30px;
-  background-color: ${({ activeColor, theme }) => (activeColor ? theme[activeColor] : 'white')};
+  background-color: ${({ activeColor, theme }) => (activeColor ? theme[activeColor] : theme.note)};
   :first-of-type {
     z-index: 9999;
   }
@@ -86,6 +86,10 @@ const Card = ({ cardType }) => (
 
 Card.propTypes = {
   cardType: PropTypes.oneOf(['note', 'twitter', 'article']),
+};
+
+Card.defaultProps = {
+  cardType: 'note',
 };
 
 export default Card;

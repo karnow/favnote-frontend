@@ -1,10 +1,9 @@
-import Sidebar from 'components/organisms/Sidebar';
 import React from 'react';
+import UserPageTemplate from 'templates/UserPageTemplate';
 
 const Notes = () => (
-  <>
-    <Sidebar pageType='note' />
-    {/* <h1>Notes view</h1>; */}
-  </>
+  <UserPageTemplate pageType='note'>
+    <h1>Notes view</h1>
+  </UserPageTemplate>
 );
 export default Notes;

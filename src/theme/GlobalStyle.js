@@ -10,7 +10,7 @@ html {
     font-size: 62,5%; //1 rem === 10px
 }
 body {
-    background-color: white;
+    padding-left:150px;
     font-size: 1.6rem; //happy rems
     font-family: 'Montserrat', sans-serif;
 }

@@ -38,24 +38,17 @@ const StyledLogoLink = styled(NavLink)`
 const StyledLogoutButton = styled(ButtonIcon)`
   margin-top: auto;
 `;
-
-// const StyledLinksList = styled.ul`
-//   margin: 0;
-//   padding: 0;
-//   list-style: none;
-// `;
+const StyledLinksList = styled(ButtonIcon)`
+  margin-bottom: 4px;
+`;
 
 const Sidebar = ({ pageType }) => (
   <StyledWrapper activeColor={pageType}>
     <StyledLogoLink to='/' />
-    <NavLink to='/notes'>
-      <ButtonIcon icon={penIcon} activeclass='active' />
-    </NavLink>
 
-    <ButtonIcon as={NavLink} to='/twitters' icon={twitterIcon} activeclass='active' />
-
-    <ButtonIcon as={NavLink} to='/articles' icon={bulbIcon} activeclass='active' />
-
+    <StyledLinksList as={NavLink} to='/' icon={penIcon} />
+    <StyledLinksList as={NavLink} to='/twitters' icon={twitterIcon} />
+    <StyledLinksList as={NavLink} to='/articles' icon={bulbIcon} />
     <StyledLogoutButton as={NavLink} to='/login' icon={logoutIcon} />
   </StyledWrapper>
 );

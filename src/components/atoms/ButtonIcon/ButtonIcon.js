@@ -9,7 +9,10 @@ const ButtonIcon = styled.button`
   background-position: 50% 50%;
   background-size: 40%;
   border: none;
-  background-color: ${({ active }) => (active ? 'white' : 'transparent')};
+
+  :active {
+    background-color: white;
+  }
 `;
 
 export default ButtonIcon;
