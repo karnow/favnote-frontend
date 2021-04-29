@@ -21,6 +21,9 @@ const StyledPageHeader = styled.div`
 
 const StyledHeading = styled(Heading)`
   margin: 25px 0 0 0;
+  ::first-letter {
+    text-transform: uppercase;
+  }
 `;
 const StyledParagraph = styled(Paragraph)`
   margin: 0;
@@ -33,8 +36,8 @@ const UserPageTemplate = ({ children, pageType }) => (
     <StyledWrapper>
       <StyledPageHeader>
         <Input search placeholder='Search' />
-        <StyledHeading big>Notes</StyledHeading>
-        <StyledParagraph>6 notes</StyledParagraph>
+        <StyledHeading big>{pageType}s</StyledHeading>
+        <StyledParagraph>6 {pageType}s</StyledParagraph>
       </StyledPageHeader>
       <StyledGrid>{children}</StyledGrid>
     </StyledWrapper>
