@@ -74,7 +74,7 @@ const Card = ({ cardType }) => (
       {cardType === 'twitter' && <StyledAvatar src='https://unavatar.now.sh/twitter/hello_roman' />}
       {cardType === 'article' && <StyledLinkButton href='https://youtube.com/helloroman' />}
     </InnerWrapper>
-    <InnerWrapper flex>
+    <InnerWrapper flex activeColor='white'>
       <Paragraph>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit nemo ducimus fuga
         repellendus illum
