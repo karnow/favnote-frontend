@@ -1,11 +1,11 @@
 import React from 'react';
-import UserPageTemplate from 'templates/UserPageTemplate';
+import GridTemplate from 'templates/GridTemplate';
 import Card from 'components/molecules/Card';
 
 const twitters = [
   {
     id: 1,
-    title: 'Hello Roman',
+    title: 'Hello Roman ',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
     created: '1 day',
@@ -21,7 +21,7 @@ const twitters = [
   },
   {
     id: 3,
-    title: 'React router stuff',
+    title: 'React router stuffkkk',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
     created: '5 days',
@@ -38,7 +38,7 @@ const twitters = [
 ];
 
 const Twitters = () => (
-  <UserPageTemplate pageType='twitter'>
+  <GridTemplate pageType='twitter'>
     {twitters.map((item) => (
       <Card
         cardType='twitter'
@@ -47,9 +47,10 @@ const Twitters = () => (
         created={item.created}
         twitterName={item.twitterName}
         key={item.id}
+        id={item.id}
       />
     ))}
-  </UserPageTemplate>
+  </GridTemplate>
 );
 
 export default Twitters;

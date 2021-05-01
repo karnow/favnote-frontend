@@ -5,6 +5,7 @@ import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Heading from 'components/atoms/Heading/Heading';
 import Button from 'components/atoms/Button/Button';
 import LinkIcon from 'assets/icons/link.svg';
+import { Link } from 'react-router-dom';
 
 const StyledWrapper = styled.div`
   min-height: 380px;
@@ -65,21 +66,27 @@ const StyledLinkButton = styled.a`
   top: 25px;
   /* transform: translateY(50%); */
 `;
-
-const Card = ({ cardType, title, created, twitterName, articleUrl, content }) => (
-  <StyledWrapper>
-    <InnerWrapper activeColor={cardType}>
-      <StyledHeading>{title}</StyledHeading>
-      <DateInfo>{created}</DateInfo>
-      {cardType === 'twitter' && <StyledAvatar src={twitterName} />}
-      {cardType === 'article' && <StyledLinkButton href={articleUrl} />}
-    </InnerWrapper>
-    <InnerWrapper flex activeColor='white'>
-      <Paragraph>{content}</Paragraph>
-      <Button secondary>REMOVE</Button>
-    </InnerWrapper>
-  </StyledWrapper>
-);
+function Card({ id, cardType, title, created, twitterName, articleUrl, content }) {
+  return (
+    <StyledWrapper>
+      <InnerWrapper activeColor={cardType}>
+        <Link
+          to={`/${cardType}/${id}`}
+          state={{ title: title, content: content, cardType: cardType }}
+        >
+          <StyledHeading>{title}</StyledHeading>
+        </Link>
+        <DateInfo>{created}</DateInfo>
+        {cardType === 'twitter' && <StyledAvatar src={twitterName} />}
+        {cardType === 'article' && <StyledLinkButton href={articleUrl} />}
+      </InnerWrapper>
+      <InnerWrapper flex activeColor='white'>
+        <Paragraph>{content}</Paragraph>
+        <Button secondary>REMOVE</Button>
+      </InnerWrapper>
+    </StyledWrapper>
+  );
+}
 
 Card.propTypes = {
   cardType: PropTypes.oneOf(['note', 'twitter', 'article']),
