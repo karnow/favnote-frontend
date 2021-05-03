@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -50,26 +51,30 @@ const StyledImage = styled.img`
   border-radius: 50%;
 `;
 
-const DetailsTemplate = ({ pageType, title, created, content, twitterName, articleUrl, id }) => (
-  <UserPageTemplate pageType={pageType}>
-    <StyledWrapper>
-      <StyledPageHeader>
-        <StyledHeading big as='h1'>
-          {title}
-        </StyledHeading>
-        <StyledParagraph>{created}</StyledParagraph>
-      </StyledPageHeader>
-      <Paragraph>{content}</Paragraph>
-      {pageType === 'articles' && <StyledLink href={articleUrl}>Open article</StyledLink>}
-      {pageType === 'twitters' && (
-        <StyledImage alt={title} src={`https://avatars.io/twitter/${twitterName}`} />
-      )}
-      <Button as={Link} to={`/${pageType}s`} activeColor={pageType}>
-        save / close
-      </Button>
-    </StyledWrapper>
-  </UserPageTemplate>
-);
+const DetailsTemplate = ({ pageType, title, created, content, twitterName, articleUrl, id }) => {
+  const navigate = useNavigate();
+
+  return (
+    <UserPageTemplate pageType={pageType}>
+      <StyledWrapper>
+        <StyledPageHeader>
+          <StyledHeading big as='h1'>
+            {title}
+          </StyledHeading>
+          <StyledParagraph>{created}</StyledParagraph>
+        </StyledPageHeader>
+        <Paragraph>{content}</Paragraph>
+        {pageType === 'articles' && <StyledLink href={articleUrl}>Open article</StyledLink>}
+        {pageType === 'twitters' && (
+          <StyledImage alt={title} src={`https://avatars.io/twitter/${twitterName}`} />
+        )}
+        <Button onClick={() => navigate(`/${pageType}s`)} activeColor={pageType}>
+          save / close
+        </Button>
+      </StyledWrapper>
+    </UserPageTemplate>
+  );
+};
 
 // DetailsTemplate.propTypes = {
 //   pageType: PropTypes.string.isRequired,

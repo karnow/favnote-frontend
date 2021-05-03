@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSearchParams } from 'react-router-dom';
+// import { useSearchParams } from 'react-router-dom';
 import { useLocation, useParams } from 'react-router';
 import DetailsTemplate from 'templates/DetailsTemplate';
 
