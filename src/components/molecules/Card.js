@@ -72,7 +72,15 @@ function Card({ id, cardType, title, created, twitterName, articleUrl, content }
       <InnerWrapper activeColor={cardType}>
         <Link
           to={`/${cardType}/${id}`}
-          state={{ title: title, content: content, cardType: cardType }}
+          state={{
+            cardType: cardType,
+            title: title,
+            created: created,
+            content: content,
+            twitterName: twitterName,
+            articleUrl: articleUrl,
+            id: id,
+          }}
         >
           <StyledHeading>{title}</StyledHeading>
         </Link>

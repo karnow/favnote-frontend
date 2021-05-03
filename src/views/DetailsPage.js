@@ -8,15 +8,19 @@ const DetailsPage = () => {
   console.log(params);
   const location = useLocation();
   const { state } = location;
-  console.log(state);
+  console.log(location);
 
   return (
     <>
-      <DetailsTemplate pageType={state.cardType}>
-        <h1>{state.title}</h1>
-        <p>{state.content}</p>
-        <p>{state.cardType}</p>
-      </DetailsTemplate>
+      <DetailsTemplate
+        pageType={state.cardType}
+        title={state.title}
+        created={state.created}
+        content={state.content}
+        twitterName={state.twitterName}
+        articleUrl={state.articleUrl}
+        id={state.id}
+      />
     </>
   );
 };
