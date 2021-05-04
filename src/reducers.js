@@ -104,8 +104,11 @@ export function noteReducer(state = initialState, action = {}) {
     return initialState;
   }
   switch (action.type) {
-    case 'NOTE_SET': {
-      return state;
+    case 'ADD_NOTE': {
+      const { note } = action;
+      const notes = [...state.notes, note];
+      console.log(notes);
+      return { ...state, notes };
     }
 
     default:

@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import MainTemplate from 'templates/MainTemplate';
 import { useSelector, useStore } from 'react-redux';
@@ -7,7 +8,7 @@ import Notes from 'views/Notes';
 import Articles from 'views/Articles';
 import Twitters from 'views/Twitters';
 import DetailsPage from 'views/DetailsPage';
-import { getAllNotes, getNoteByID } from '../reducers';
+import { getAllNotes, getNoteByID, addNote } from '../reducers';
 
 function Root() {
   // const store = useStore();
@@ -17,7 +18,8 @@ function Root() {
   // console.log(notes[0]);
   // const n = useSelector((state) => getNoteByID(state, '1'));
   // console.log(n);
-
+  // const dispatch = useDispatch();
+  // dispatch(addNote({ id: 6, title: 'mietek', content: 'szla dzieweczka do laseczka' }));
   return (
     <>
       <Router>
