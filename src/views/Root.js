@@ -8,8 +8,8 @@ import Notes from 'views/Notes';
 import Articles from 'views/Articles';
 import Twitters from 'views/Twitters';
 import DetailsPage from 'views/DetailsPage';
-import { getAllNotes, getNoteByID, addNote } from '../reducers';
-
+import { getAllNotes, getNoteByID } from '../reducers';
+import { addNote } from '../actions';
 function Root() {
   // const store = useStore();
   // const res = store.getState();
@@ -19,7 +19,12 @@ function Root() {
   // const n = useSelector((state) => getNoteByID(state, '1'));
   // console.log(n);
   // const dispatch = useDispatch();
-  // dispatch(addNote({ id: 6, title: 'mietek', content: 'szla dzieweczka do laseczka' }));
+  // dispatch(
+  //   addNote(
+  //     { id: 6, title: 'mietek', content: 'szla dzieweczka do laseczka' },
+  //     { typeNote: 'karol' }
+  //   )
+  // );
   return (
     <>
       <Router>

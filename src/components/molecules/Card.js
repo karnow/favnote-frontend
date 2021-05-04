@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
@@ -6,6 +7,7 @@ import Heading from 'components/atoms/Heading/Heading';
 import Button from 'components/atoms/Button/Button';
 import LinkIcon from 'assets/icons/link.svg';
 import { Link } from 'react-router-dom';
+import { removeResource } from '../../actions';
 
 const StyledWrapper = styled.div`
   min-height: 380px;
@@ -67,6 +69,25 @@ const StyledLinkButton = styled.a`
   /* transform: translateY(50%); */
 `;
 function Card({ id, cardType, title, created, twitterName, articleUrl, content }) {
+  const dispatch = useDispatch();
+  console.log(cardType);
+
+  function removedType(cardType) {
+    if (cardType === 'note') {
+      const removeType = 'REMOVE_NOTE';
+      return removeType;
+    }
+    if (cardType === 'twitter') {
+      const removeType = 'REMOVE_TWITTER';
+      return removeType;
+    }
+    if (cardType === 'article') {
+      const removeType = 'REMOVE_ARTICLE';
+      return removeType;
+    }
+    return null;
+  }
+
   return (
     <StyledWrapper>
       <InnerWrapper activeColor={cardType}>
@@ -90,7 +111,15 @@ function Card({ id, cardType, title, created, twitterName, articleUrl, content }
       </InnerWrapper>
       <InnerWrapper flex activeColor='white'>
         <Paragraph>{content}</Paragraph>
-        <Button secondary>REMOVE</Button>
+        <Button
+          secondary
+          onClick={() => {
+            const removeType = removedType(cardType);
+            dispatch(removeResource(id, removeType));
+          }}
+        >
+          REMOVE
+        </Button>
       </InnerWrapper>
     </StyledWrapper>
   );

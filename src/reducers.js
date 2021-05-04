@@ -105,17 +105,34 @@ export function noteReducer(state = initialState, action = {}) {
   }
   switch (action.type) {
     case 'ADD_NOTE': {
-      const { note } = action;
+      console.log(action);
+      const { note, typeNote } = action;
+      console.log(typeNote);
       const notes = [...state.notes, note];
       console.log(notes);
       return { ...state, notes };
     }
-
+    case 'REMOVE_NOTE': {
+      const { indexToRemove } = action;
+      const notes = state.notes.filter((note) => note.id !== indexToRemove);
+      return { ...state, notes };
+    }
+    case 'REMOVE_TWITTER': {
+      const { indexToRemove } = action;
+      const twitters = state.twitters.filter((twitter) => twitter.id !== indexToRemove);
+      return { ...state, twitters };
+    }
+    case 'REMOVE_ARTICLE': {
+      const { indexToRemove } = action;
+      const articles = state.articles.filter((article) => article.id !== indexToRemove);
+      return { ...state, articles };
+    }
     default:
       return state;
   }
 }
 
+//selectors
 export const getAllNotes = (state) => state.notes;
 export const getAllTwitters = (state) => state.twitters;
 export const getAllArticles = (state) => state.articles;
