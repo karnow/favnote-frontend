@@ -112,20 +112,23 @@ export function noteReducer(state = initialState, action = {}) {
       console.log(notes);
       return { ...state, notes };
     }
-    case 'REMOVE_NOTE': {
-      const { indexToRemove } = action;
-      const notes = state.notes.filter((note) => note.id !== indexToRemove);
-      return { ...state, notes };
-    }
-    case 'REMOVE_TWITTER': {
-      const { indexToRemove } = action;
-      const twitters = state.twitters.filter((twitter) => twitter.id !== indexToRemove);
-      return { ...state, twitters };
-    }
-    case 'REMOVE_ARTICLE': {
-      const { indexToRemove } = action;
-      const articles = state.articles.filter((article) => article.id !== indexToRemove);
-      return { ...state, articles };
+    case 'REMOVE_RESOURCE': {
+      const { cardType } = action;
+      if (cardType === 'note') {
+        const { indexToRemove } = action;
+        const notes = state.notes.filter((note) => note.id !== indexToRemove);
+        return { ...state, notes };
+      }
+      if (cardType === 'twitter') {
+        const { indexToRemove } = action;
+        const twitters = state.twitters.filter((twitter) => twitter.id !== indexToRemove);
+        return { ...state, twitters };
+      }
+      if (cardType === 'article') {
+        const { indexToRemove } = action;
+        const articles = state.articles.filter((article) => article.id !== indexToRemove);
+        return { ...state, articles };
+      }
     }
     default:
       return state;

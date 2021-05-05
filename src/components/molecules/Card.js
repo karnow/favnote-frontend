@@ -71,23 +71,6 @@ const StyledLinkButton = styled.a`
 function Card({ id, cardType, title, created, twitterName, articleUrl, content }) {
   const dispatch = useDispatch();
   console.log(cardType);
-
-  function removedType(cardType) {
-    if (cardType === 'note') {
-      const removeType = 'REMOVE_NOTE';
-      return removeType;
-    }
-    if (cardType === 'twitter') {
-      const removeType = 'REMOVE_TWITTER';
-      return removeType;
-    }
-    if (cardType === 'article') {
-      const removeType = 'REMOVE_ARTICLE';
-      return removeType;
-    }
-    return null;
-  }
-
   return (
     <StyledWrapper>
       <InnerWrapper activeColor={cardType}>
@@ -114,8 +97,7 @@ function Card({ id, cardType, title, created, twitterName, articleUrl, content }
         <Button
           secondary
           onClick={() => {
-            const removeType = removedType(cardType);
-            dispatch(removeResource(id, removeType));
+            dispatch(removeResource(id, cardType));
           }}
         >
           REMOVE
