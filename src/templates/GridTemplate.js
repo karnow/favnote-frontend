@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import UserPageTemplate from 'templates/UserPageTemplate';
@@ -46,22 +46,33 @@ const StyledButtonIcon = styled(ButtonIcon)`
   z-index: 10000;
 `;
 
-const GridTemplate = ({ children, pageType }) => (
-  <UserPageTemplate pageType={pageType}>
-    <StyledWrapper>
-      <StyledPageHeader>
-        <Input search placeholder='Search' />
-        <StyledHeading big as='h1'>
-          {pageType}
-        </StyledHeading>
-        <StyledParagraph>6 {pageType}</StyledParagraph>
-      </StyledPageHeader>
-      <StyledGrid>{children}</StyledGrid>
-      <StyledButtonIcon onClick={() => ''} icon={plusIcon} pageType={pageType} />
-      <NewItemBar pageType={pageType} />
-    </StyledWrapper>
-  </UserPageTemplate>
-);
+const GridTemplate = ({ children, pageType }) => {
+  const [state, setState] = useState(false);
+  const handleNewItemBarToggle = () => {
+    setState(!state);
+  };
+
+  return (
+    <UserPageTemplate pageType={pageType}>
+      <StyledWrapper>
+        <StyledPageHeader>
+          <Input search placeholder='Search' />
+          <StyledHeading big as='h1'>
+            {pageType}
+          </StyledHeading>
+          <StyledParagraph>6 {pageType}</StyledParagraph>
+        </StyledPageHeader>
+        <StyledGrid>{children}</StyledGrid>
+        <StyledButtonIcon
+          onClick={() => handleNewItemBarToggle()}
+          icon={plusIcon}
+          pageType={pageType}
+        />
+        <NewItemBar pageType={pageType} isVisible={state} />
+      </StyledWrapper>
+    </UserPageTemplate>
+  );
+};
 
 // GridTemplate.propTypes = {
 //   children: PropTypes.arrayOf(PropTypes.object).isRequired,
