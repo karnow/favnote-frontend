@@ -5,10 +5,10 @@ import DetailsTemplate from 'templates/DetailsTemplate';
 
 const DetailsPage = () => {
   const params = useParams();
-  console.log(params);
+  // console.log(params);
   const location = useLocation();
   const { state } = location;
-  console.log(location);
+  // console.log(location);
 
   return (
     <>

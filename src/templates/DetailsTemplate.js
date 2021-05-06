@@ -53,7 +53,7 @@ const StyledImage = styled.img`
 
 const DetailsTemplate = ({ pageType, title, created, content, twitterName, articleUrl, id }) => {
   const navigate = useNavigate();
-
+  console.log(pageType);
   return (
     <UserPageTemplate pageType={pageType}>
       <StyledWrapper>

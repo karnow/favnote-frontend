@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
@@ -8,6 +8,7 @@ import Button from 'components/atoms/Button/Button';
 import LinkIcon from 'assets/icons/link.svg';
 import { Link } from 'react-router-dom';
 import { removeResource } from '../../actions';
+import PageContext from 'context/PageContext';
 
 const StyledWrapper = styled.div`
   min-height: 380px;
@@ -69,8 +70,9 @@ const StyledLinkButton = styled.a`
   /* transform: translateY(50%); */
 `;
 function Card({ id, cardType, title, created, twitterName, articleUrl, content }) {
+  // const { pageType } = useContext(PageContext);
+  // console.log(pageType);
   const dispatch = useDispatch();
-  console.log(cardType);
   return (
     <StyledWrapper>
       <InnerWrapper activeColor={cardType}>
