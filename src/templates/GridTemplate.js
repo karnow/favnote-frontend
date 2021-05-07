@@ -68,7 +68,11 @@ const GridTemplate = ({ children, pageType }) => {
           icon={plusIcon}
           pageType={pageType}
         />
-        <NewItemBar pageType={pageType} isVisible={state} />
+        <NewItemBar
+          handleNewItemBarToggle={handleNewItemBarToggle}
+          pageType={pageType}
+          isVisible={state}
+        />
       </StyledWrapper>
     </UserPageTemplate>
   );

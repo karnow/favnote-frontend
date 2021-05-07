@@ -1,11 +1,12 @@
 import React from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import Heading from 'components/atoms/Heading/Heading';
 import { useDispatch } from 'react-redux';
-import { addNote } from 'actions';
+import { addResource } from 'actions';
 
 const StyledWrapper = styled.div`
   border-left: 5px solid ${({ theme, activeColor }) => theme[activeColor]};
@@ -31,19 +32,74 @@ const StyledTextArea = styled(Input)`
 const StyledInput = styled(Input)`
   margin-top: 30px;
 `;
-const NewItemBar = ({ pageType, isVisible }) => {
+const StyledForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
+`;
+const NewItemBar = ({ pageType, isVisible, handleNewItemBarToggle }) => {
   const dispatch = useDispatch();
   return (
     <StyledWrapper isVisible={isVisible} activeColor={pageType}>
       <Heading>Create new {pageType}</Heading>
-      <StyledInput placeholder={pageType === 'twitter' ? 'Account Name' : 'title'} />
-      {pageType === 'article' && <StyledInput placeholder='link' />}
-      <StyledTextArea as='textarea' placeholder='description' />
-      <Button activeColor={pageType} onClick={() => dispatch(addNote(pageType))}>
-        Add {pageType}
-      </Button>
+      <Formik
+        initialValues={{ title: '', content: '', articleUrl: '', twitterName: '', created: '' }}
+        onSubmit={(values, { setSubmitting }) => {
+          // console.log(values);
+          dispatch(addResource(values, pageType));
+          handleNewItemBarToggle();
+          setSubmitting(false);
+        }}
+      >
+        {({ values, handleChange, handleBlur }) => (
+          <StyledForm>
+            <StyledInput
+              type='text'
+              name='title'
+              placeholder='title'
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.title}
+            />
+            {pageType === 'twitter' && (
+              <StyledInput
+                type='text'
+                name='twitterName'
+                placeholder='twitter name'
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.twitterName}
+              />
+            )}
+            {pageType === 'article' && (
+              <StyledInput
+                placeholder='link'
+                type='text'
+                name='articleUrl'
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.articleUrl}
+              />
+            )}
+
+            <StyledTextArea
+              name='content'
+              as='textarea'
+              placeholder='description'
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.content}
+            />
+            <Button activeColor={pageType} type='submit'>
+              Add {pageType}
+            </Button>
+          </StyledForm>
+        )}
+      </Formik>
     </StyledWrapper>
   );
 };
 
 export default NewItemBar;
+
+{
+}

@@ -1,6 +1,6 @@
-export const addNote = (cardType) => ({
+export const addResource = (values, cardType) => ({
   type: 'ADD_RESOURCE',
-  resource: { id: getId(), title: 'mietk', content: 'wiesiek', created: '15 days' },
+  resource: { id: getId(), ...values },
   cardType: cardType,
 });
 export const removeResource = (noteId, cardType) => ({
