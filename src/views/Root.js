@@ -25,6 +25,7 @@ function Root() {
   //     { typeNote: 'karol' }
   //   )
   // );
+
   return (
     <>
       <Router>

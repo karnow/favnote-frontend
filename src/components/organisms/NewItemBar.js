@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import Heading from 'components/atoms/Heading/Heading';
+import { useDispatch } from 'react-redux';
+import { addNote } from 'actions';
 
 const StyledWrapper = styled.div`
   border-left: 5px solid ${({ theme, activeColor }) => theme[activeColor]};
@@ -30,13 +32,16 @@ const StyledInput = styled(Input)`
   margin-top: 30px;
 `;
 const NewItemBar = ({ pageType, isVisible }) => {
+  const dispatch = useDispatch();
   return (
     <StyledWrapper isVisible={isVisible} activeColor={pageType}>
       <Heading>Create new {pageType}</Heading>
       <StyledInput placeholder={pageType === 'twitter' ? 'Account Name' : 'title'} />
       {pageType === 'article' && <StyledInput placeholder='link' />}
       <StyledTextArea as='textarea' placeholder='description' />
-      <Button activeColor={pageType}>Add Note</Button>
+      <Button activeColor={pageType} onClick={() => dispatch(addNote(pageType))}>
+        Add {pageType}
+      </Button>
     </StyledWrapper>
   );
 };

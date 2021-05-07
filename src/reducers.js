@@ -104,13 +104,23 @@ export function noteReducer(state = initialState, action = {}) {
     return initialState;
   }
   switch (action.type) {
-    case 'ADD_NOTE': {
-      console.log(action);
-      const { note, typeNote } = action;
-      console.log(typeNote);
-      const notes = [...state.notes, note];
-      console.log(notes);
-      return { ...state, notes };
+    case 'ADD_RESOURCE': {
+      const { cardType } = action;
+      if (cardType === 'note') {
+        const { resource } = action;
+        const notes = [...state.notes, resource];
+        return { ...state, notes };
+      }
+      if (cardType === 'twitter') {
+        const { resource } = action;
+        const twitters = [...state.twitters, resource];
+        return { ...state, twitters };
+      }
+      if (cardType === 'article') {
+        const { resource } = action;
+        const articles = [...state.twitters, resource];
+        return { ...state, articles };
+      }
     }
     case 'REMOVE_RESOURCE': {
       const { cardType } = action;
