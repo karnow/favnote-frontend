@@ -49,20 +49,20 @@ export function noteReducer(state = initialState, action = {}) {
     }
     case 'REMOVE_RESOURCE': {
       const { cardType } = action;
-      console.log(action);
+
       if (cardType === 'note') {
         const { indexToRemove } = action;
-        const notes = state.notes.filter((note) => note.id !== indexToRemove);
+        const notes = state.notes.filter((note) => note._id !== indexToRemove);
         return { ...state, notes };
       }
       if (cardType === 'twitter') {
         const { indexToRemove } = action;
-        const twitters = state.twitters.filter((twitter) => twitter.id !== indexToRemove);
+        const twitters = state.twitters.filter((twitter) => twitter._id !== indexToRemove);
         return { ...state, twitters };
       }
       if (cardType === 'article') {
         const { indexToRemove } = action;
-        const articles = state.articles.filter((article) => article.id !== indexToRemove);
+        const articles = state.articles.filter((article) => article._id !== indexToRemove);
         return { ...state, articles };
       }
     }

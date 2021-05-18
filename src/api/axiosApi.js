@@ -27,10 +27,10 @@ const AxiosApiNote = {
     return result;
   },
 
-  //   deleteNote: async function (id) {
-  //     const respons = await axios.delete('/notes/' + id);
-  //     return respons;
-  //   },
+  deleteNote: async function (id) {
+    const respons = await axios.delete(`http://localhost:3001/api/note/${id}`);
+    return respons;
+  },
 
   addNote: async function (note) {
     console.log(note);

@@ -8,6 +8,7 @@ import Button from 'components/atoms/Button/Button';
 import LinkIcon from 'assets/icons/link.svg';
 import { Link } from 'react-router-dom';
 import { removeResource } from '../../actions';
+import AxiosApiNote from 'api/axiosApi';
 import PageContext from 'context/PageContext';
 
 const StyledWrapper = styled.div`
@@ -99,7 +100,10 @@ function Card({ id, cardType, title, created, twitterName, articleUrl, content }
         <Button
           secondary
           onClick={() => {
-            dispatch(removeResource(id, cardType));
+            AxiosApiNote.deleteNote(id).then((result) => {
+              console.log(result);
+              dispatch(removeResource(id, cardType));
+            });
           }}
         >
           REMOVE
