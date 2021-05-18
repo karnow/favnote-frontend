@@ -31,24 +31,25 @@ export function noteReducer(state = initialState, action = {}) {
     }
     case 'GET_ALL_NOTES': {
       const { resource } = action;
-      console.log(resource);
+
       const notes = resource;
       return { ...state, notes };
     }
     case 'GET_ALL_TWITTERS': {
       const { resource } = action;
-      console.log(resource);
+
       const twitters = resource;
       return { ...state, twitters };
     }
     case 'GET_ALL_ARTICLES': {
       const { resource } = action;
-      console.log(resource);
+
       const articles = resource;
       return { ...state, articles };
     }
     case 'REMOVE_RESOURCE': {
       const { cardType } = action;
+      console.log(action);
       if (cardType === 'note') {
         const { indexToRemove } = action;
         const notes = state.notes.filter((note) => note.id !== indexToRemove);
