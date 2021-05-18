@@ -69,7 +69,7 @@ const StyledLinkButton = styled.a`
   top: 25px;
   /* transform: translateY(50%); */
 `;
-function Card({ id, cardType, title, created, twitterName, articleUrl, content }) {
+function Card({ _id, cardType, title, created, twitterName, articleUrl, content }) {
   // const { pageType } = useContext(PageContext);
   // console.log(pageType);
   const dispatch = useDispatch();
@@ -77,7 +77,7 @@ function Card({ id, cardType, title, created, twitterName, articleUrl, content }
     <StyledWrapper>
       <InnerWrapper activeColor={cardType}>
         <Link
-          to={`/${cardType}/${id}`}
+          to={`/${cardType}/${_id}`}
           state={{
             cardType: cardType,
             title: title,
@@ -85,7 +85,7 @@ function Card({ id, cardType, title, created, twitterName, articleUrl, content }
             content: content,
             twitterName: twitterName,
             articleUrl: articleUrl,
-            id: id,
+            _id: _id,
           }}
         >
           <StyledHeading>{title}</StyledHeading>
@@ -99,7 +99,7 @@ function Card({ id, cardType, title, created, twitterName, articleUrl, content }
         <Button
           secondary
           onClick={() => {
-            dispatch(removeResource(id, cardType));
+            dispatch(removeResource(_id, cardType));
           }}
         >
           REMOVE

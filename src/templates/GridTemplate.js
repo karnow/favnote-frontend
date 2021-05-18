@@ -53,7 +53,7 @@ const StyledButtonIcon = styled(ButtonIcon)`
   z-index: 10000;
 `;
 
-const GridTemplate = ({ children, pageType }) => {
+const GridTemplate = ({ children, pageType, length }) => {
   const [state, setState] = useState(false);
   const handleNewItemBarToggle = () => {
     setState(!state);
@@ -67,7 +67,9 @@ const GridTemplate = ({ children, pageType }) => {
           <StyledHeading big as='h1'>
             {pageType}
           </StyledHeading>
-          <StyledParagraph>6 {pageType}</StyledParagraph>
+          <StyledParagraph>
+            {length} {pageType}
+          </StyledParagraph>
         </StyledPageHeader>
         <StyledGrid>{children}</StyledGrid>
         <StyledButtonIcon

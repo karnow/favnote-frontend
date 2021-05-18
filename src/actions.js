@@ -1,7 +1,6 @@
-export const addResource = (values, cardType) => ({
+export const addResource = (data) => ({
   type: 'ADD_RESOURCE',
-  resource: { id: getId(), ...values },
-  cardType: cardType,
+  resource: data,
 });
 export const removeResource = (noteId, cardType) => ({
   type: 'REMOVE_RESOURCE',
@@ -9,4 +8,21 @@ export const removeResource = (noteId, cardType) => ({
   cardType: cardType,
 });
 
-const getId = () => Math.random().toString(36).substr(2, 9);
+export const authorise = (_id) => ({
+  type: 'AUTH_SUCCESS',
+  userId: _id,
+});
+
+export const addAllNotes = (data) => ({
+  type: 'GET_ALL_NOTES',
+  resource: data,
+});
+export const addAllTwitters = (data) => ({
+  type: 'GET_ALL_TWITTERS',
+  resource: data,
+});
+export const addAllArticles = (data) => ({
+  type: 'GET_ALL_ARTICLES',
+  resource: data,
+});
+// const getId = () => Math.random().toString(36).substr(2, 9);

@@ -7,10 +7,9 @@ import GlobalStyle from 'theme/GlobalStyle';
 import { theme } from 'theme/mainTheme';
 
 const MainTemplate = ({ children }) => {
-  // const [params, setParams] = useState(null);
   const location = useLocation();
   console.log(location.pathname);
-  // setParams(location.pathname);
+
   const pageTypes = ['twitter', 'article', 'note'];
   const [currentPage] = pageTypes.filter((page) => location.pathname.includes(page));
   console.log(currentPage);

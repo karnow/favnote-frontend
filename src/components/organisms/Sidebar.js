@@ -49,7 +49,7 @@ const Sidebar = ({ pageType }) => (
     <StyledLinksList as={NavLink} to='/notes' icon={penIcon} />
     <StyledLinksList as={NavLink} to='/twitters' icon={twitterIcon} />
     <StyledLinksList as={NavLink} to='/articles' icon={bulbIcon} />
-    <StyledLogoutButton as={NavLink} to='/login' icon={logoutIcon} />
+    <StyledLogoutButton as={NavLink} to='/' icon={logoutIcon} />
   </StyledWrapper>
 );
 

@@ -7,6 +7,7 @@ import Button from 'components/atoms/Button/Button';
 import Heading from 'components/atoms/Heading/Heading';
 import { useDispatch } from 'react-redux';
 import { addResource } from 'actions';
+import AxiosApiNote from 'api/axiosApi';
 
 const StyledWrapper = styled.div`
   border-left: 5px solid ${({ theme, activeColor }) => theme[activeColor]};
@@ -44,8 +45,16 @@ const NewItemBar = ({ pageType, isVisible, handleNewItemBarToggle }) => {
       <Formik
         initialValues={{ title: '', content: '', articleUrl: '', twitterName: '', created: '' }}
         onSubmit={(values, { setSubmitting }) => {
-          // console.log(values);
-          dispatch(addResource(values, pageType));
+          const type = `${pageType}s`;
+          const data = {
+            ...values,
+            type,
+          };
+          console.log(data);
+          AxiosApiNote.addNote(data).then((result) => {
+            console.log(result);
+            dispatch(addResource(result));
+          });
           handleNewItemBarToggle();
           setSubmitting(false);
         }}

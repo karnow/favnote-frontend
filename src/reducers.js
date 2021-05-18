@@ -1,102 +1,8 @@
 const initialState = {
-  notes: [
-    {
-      id: 1,
-      title: 'Wake me up when Vue ends',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      created: '1 day',
-    },
-    {
-      id: 2,
-      title: 'Como es An Gular?',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      created: '1 day',
-    },
-    {
-      id: 3,
-      title: 'Du bist Reactish',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      created: '5 days',
-    },
-    {
-      id: 4,
-      title: 'Reactuj się kto moze!',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      created: '10 days',
-    },
-  ],
-  twitters: [
-    {
-      id: 1,
-      title: 'Hello Roman ',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      created: '1 day',
-      twitterName: 'hello_roman',
-    },
-    {
-      id: 2,
-      title: 'Redux guy',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      created: '1 day',
-      twitterName: 'dan_abramov',
-    },
-    {
-      id: 3,
-      title: 'React router stuffkkk',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      created: '5 days',
-      twitterName: 'mjackson',
-    },
-    {
-      id: 4,
-      title: 'Super animacje!',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      created: '10 days',
-      twitterName: 'sarah_edo',
-    },
-  ],
-  articles: [
-    {
-      id: 1,
-      title: 'React on my mindes',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      articleUrl: 'https://youtube.com/helloroman',
-      created: '1 day',
-    },
-    {
-      id: 2,
-      title: 'Wish you React',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      articleUrl: 'https://youtube.com/helloroman',
-      created: '1 day',
-    },
-    {
-      id: 3,
-      title: 'You gave React a bad name',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      articleUrl: 'https://youtube.com/helloroman',
-      created: '5 days',
-    },
-    {
-      id: 4,
-      title: 'Is it React you looking for?',
-      content:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-      articleUrl: 'https://youtube.com/helloroman',
-      created: '10 days',
-    },
-  ],
+  notes: [],
+  twitters: [],
+  articles: [],
+  userID: null,
 };
 
 export function noteReducer(state = initialState, action = {}) {
@@ -105,22 +11,41 @@ export function noteReducer(state = initialState, action = {}) {
   }
   switch (action.type) {
     case 'ADD_RESOURCE': {
-      const { cardType } = action;
-      if (cardType === 'note') {
+      const { resource } = action;
+      console.log(resource);
+      if (resource.type === 'notes') {
         const { resource } = action;
         const notes = [...state.notes, resource];
         return { ...state, notes };
       }
-      if (cardType === 'twitter') {
+      if (resource.type === 'twitters') {
         const { resource } = action;
         const twitters = [...state.twitters, resource];
         return { ...state, twitters };
       }
-      if (cardType === 'article') {
+      if (resource.type === 'articles') {
         const { resource } = action;
         const articles = [...state.twitters, resource];
         return { ...state, articles };
       }
+    }
+    case 'GET_ALL_NOTES': {
+      const { resource } = action;
+      console.log(resource);
+      const notes = resource;
+      return { ...state, notes };
+    }
+    case 'GET_ALL_TWITTERS': {
+      const { resource } = action;
+      console.log(resource);
+      const twitters = resource;
+      return { ...state, twitters };
+    }
+    case 'GET_ALL_ARTICLES': {
+      const { resource } = action;
+      console.log(resource);
+      const articles = resource;
+      return { ...state, articles };
     }
     case 'REMOVE_RESOURCE': {
       const { cardType } = action;
@@ -139,6 +64,14 @@ export function noteReducer(state = initialState, action = {}) {
         const articles = state.articles.filter((article) => article.id !== indexToRemove);
         return { ...state, articles };
       }
+    }
+    case 'AUTH_SUCCESS': {
+      const { userId } = action;
+      console.log(userId);
+      return {
+        ...state,
+        userID: userId,
+      };
     }
     default:
       return state;

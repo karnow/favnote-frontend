@@ -10,6 +10,8 @@ import Twitters from 'views/Twitters';
 import DetailsPage from 'views/DetailsPage';
 import { getAllNotes, getNoteByID } from '../reducers';
 import { addNote } from '../actions';
+import LoginPage from 'views/LoginPage';
+import RegisterPage from 'views/RegisterPage';
 function Root() {
   // const store = useStore();
   // const res = store.getState();
@@ -31,7 +33,8 @@ function Root() {
       <Router>
         <MainTemplate>
           <Routes>
-            <Route path='/' element={<Notes />} />
+            <Route path='/' element={<LoginPage />} />
+            <Route path='/register' element={<RegisterPage />} />
             <Route path='/notes' element={<Notes />} />
             <Route path='/note/:noteId' element={<DetailsPage />} />
             <Route path='/articles' element={<Articles />} />
