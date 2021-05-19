@@ -71,6 +71,7 @@ const StyledLinkButton = styled.a`
   /* transform: translateY(50%); */
 `;
 function Card({ id, cardType, title, created, twitterName, articleUrl, content }) {
+  const userId = localStorage.getItem('userId');
   // const { pageType } = useContext(PageContext);
   // console.log(pageType);
   const dispatch = useDispatch();
@@ -100,7 +101,7 @@ function Card({ id, cardType, title, created, twitterName, articleUrl, content }
         <Button
           secondary
           onClick={() => {
-            AxiosApiNote.deleteNote(id).then((result) => {
+            AxiosApiNote.deleteNote(id, userId).then((result) => {
               console.log(result);
               dispatch(removeResource(id, cardType));
             });

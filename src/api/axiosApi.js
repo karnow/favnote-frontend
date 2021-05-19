@@ -29,8 +29,8 @@ const AxiosApiNote = {
     return result;
   },
 
-  deleteNote: async function (id) {
-    const respons = await axios.delete(`http://localhost:3001/api/note/${id}`);
+  deleteNote: async function (id, userId) {
+    const respons = await axios.delete(`http://localhost:3001/api/note/${id}?userId=${userId}`);
     return respons;
   },
 
