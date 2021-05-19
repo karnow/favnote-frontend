@@ -7,6 +7,7 @@ import AxiosApiNote from 'api/axiosApi';
 import { useDispatch } from 'react-redux';
 import { addAllNotes } from 'actions';
 import { useLocation } from 'react-router';
+import { getUserId } from 'reducers';
 
 const Notes = () => {
   const location = useLocation();
@@ -18,11 +19,16 @@ const Notes = () => {
 
   const dispatch = useDispatch();
 
+  const userId = localStorage.getItem('userId');
+  console.log(userId);
+
   useEffect(() => {
-    AxiosApiNote.getAllNotesByType(type).then((result) => {
-      console.log(result);
-      dispatch(addAllNotes(result));
-    });
+    AxiosApiNote.getAllNotesByType(type, userId)
+      .then((result) => {
+        console.log(result);
+        dispatch(addAllNotes(result));
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   const notes = useSelector((state) => getAllNotes(state));

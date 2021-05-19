@@ -18,11 +18,15 @@ const Twitters = () => {
 
   const dispatch = useDispatch();
 
+  const userId = localStorage.getItem('userId');
+
   useEffect(() => {
-    AxiosApiNote.getAllNotesByType(type).then((result) => {
-      console.log(result);
-      dispatch(addAllTwitters(result));
-    });
+    AxiosApiNote.getAllNotesByType(type, userId)
+      .then((result) => {
+        console.log(result);
+        dispatch(addAllTwitters(result));
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   const twitters = useSelector((state) => getAllTwitters(state));

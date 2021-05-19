@@ -14,15 +14,18 @@ const Articles = () => {
 
   const pageTypes = ['twitters', 'articles', 'notes'];
   const [type] = pageTypes.filter((page) => location.pathname.includes(page));
-  console.log(type);
 
   const dispatch = useDispatch();
 
+  const userId = localStorage.getItem('userId');
+
   useEffect(() => {
-    AxiosApiNote.getAllNotesByType(type).then((result) => {
-      console.log(result);
-      dispatch(addAllArticles(result));
-    });
+    AxiosApiNote.getAllNotesByType(type, userId)
+      .then((result) => {
+        console.log(result);
+        dispatch(addAllArticles(result));
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   const articles = useSelector((state) => getAllArticles(state));

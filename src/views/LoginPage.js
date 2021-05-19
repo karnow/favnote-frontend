@@ -46,7 +46,8 @@ const LoginPage = () => {
           AxiosApiNote.login(username, password)
             .then((respons) => {
               console.log(respons._id);
-              dispatch(authorise(respons._id));
+              localStorage.setItem('userId', respons._id);
+              // dispatch(authorise(respons._id));
               navigate('/notes');
             })
             .catch((err) => console.log(err));

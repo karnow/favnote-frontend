@@ -42,16 +42,21 @@ const StyledLinksList = styled(ButtonIcon)`
   margin-bottom: 4px;
 `;
 
-const Sidebar = ({ pageType }) => (
-  <StyledWrapper activeColor={pageType}>
-    <StyledLogoLink to='/' />
+const Sidebar = ({ pageType }) => {
+  function logout() {
+    localStorage.removeItem('userId');
+  }
+  return (
+    <StyledWrapper activeColor={pageType}>
+      <StyledLogoLink to='/' />
 
-    <StyledLinksList as={NavLink} to='/notes' icon={penIcon} />
-    <StyledLinksList as={NavLink} to='/twitters' icon={twitterIcon} />
-    <StyledLinksList as={NavLink} to='/articles' icon={bulbIcon} />
-    <StyledLogoutButton as={NavLink} to='/' icon={logoutIcon} />
-  </StyledWrapper>
-);
+      <StyledLinksList as={NavLink} to='/notes' icon={penIcon} />
+      <StyledLinksList as={NavLink} to='/twitters' icon={twitterIcon} />
+      <StyledLinksList as={NavLink} to='/articles' icon={bulbIcon} />
+      <StyledLogoutButton as={NavLink} to='/' onClick={() => logout()} icon={logoutIcon} />
+    </StyledWrapper>
+  );
+};
 
 Sidebar.propTypes = {
   pageType: PropTypes.string.isRequired,

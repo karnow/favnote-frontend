@@ -80,6 +80,7 @@ export function noteReducer(state = initialState, action = {}) {
 }
 
 //selectors
+export const getUserId = (state) => state.userID;
 export const getAllNotes = (state) => state.notes;
 export const getAllTwitters = (state) => state.twitters;
 export const getAllArticles = (state) => state.articles;

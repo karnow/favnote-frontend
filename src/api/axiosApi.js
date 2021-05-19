@@ -20,8 +20,10 @@ const AxiosApiNote = {
     return respons;
   },
 
-  getAllNotesByType: async function (type) {
-    const respons = await axios.get(`http://localhost:3001/api/notes/type?type=${type}`);
+  getAllNotesByType: async function (type, userId) {
+    const respons = await axios.get(
+      `http://localhost:3001/api/notes/type?type=${type}&userId=${userId}`
+    );
     console.log(respons);
     const result = respons.data;
     return result;
