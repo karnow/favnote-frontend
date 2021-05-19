@@ -34,9 +34,9 @@ const AxiosApiNote = {
     return respons;
   },
 
-  addNote: async function (note) {
+  addNote: async function (note, userId) {
     console.log(note);
-    const res = await axios.post('http://localhost:3001/api/note', note);
+    const res = await axios.post(`http://localhost:3001/api/note?userId=${userId}`, note);
     return res.data;
   },
 

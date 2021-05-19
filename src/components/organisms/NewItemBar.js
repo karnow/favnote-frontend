@@ -38,6 +38,7 @@ const StyledForm = styled(Form)`
   flex-direction: column;
 `;
 const NewItemBar = ({ pageType, isVisible, handleNewItemBarToggle }) => {
+  const userId = localStorage.getItem('userId');
   const dispatch = useDispatch();
   return (
     <StyledWrapper isVisible={isVisible} activeColor={pageType}>
@@ -51,10 +52,12 @@ const NewItemBar = ({ pageType, isVisible, handleNewItemBarToggle }) => {
             type,
           };
           console.log(data);
-          AxiosApiNote.addNote(data).then((result) => {
-            console.log(result);
-            dispatch(addResource(result));
-          });
+          AxiosApiNote.addNote(data, userId)
+            .then((result) => {
+              console.log(result);
+              dispatch(addResource(result));
+            })
+            .catch((err) => console.log(err));
           handleNewItemBarToggle();
           setSubmitting(false);
         }}
