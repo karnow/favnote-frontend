@@ -25,4 +25,9 @@ export const addAllArticles = (data) => ({
   type: 'GET_ALL_ARTICLES',
   resource: data,
 });
+
+export const addCurrentNote = (data) => ({
+  type: 'SET_CURRENT_NOTE',
+  resource: data,
+});
 // const getId = () => Math.random().toString(36).substr(2, 9);

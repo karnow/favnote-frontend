@@ -3,6 +3,7 @@ const initialState = {
   twitters: [],
   articles: [],
   userID: null,
+  currentNote: {},
 };
 
 export function noteReducer(state = initialState, action = {}) {
@@ -74,6 +75,14 @@ export function noteReducer(state = initialState, action = {}) {
         userID: userId,
       };
     }
+    case 'SET_CURRENT_NOTE': {
+      const { resource } = action;
+      console.log(resource);
+      return {
+        ...state,
+        currentNote: resource,
+      };
+    }
     default:
       return state;
   }
@@ -84,4 +93,5 @@ export const getUserId = (state) => state.userID;
 export const getAllNotes = (state) => state.notes;
 export const getAllTwitters = (state) => state.twitters;
 export const getAllArticles = (state) => state.articles;
-export const getNoteByID = (state, noteId) => state.notes.find((note) => note.id === noteId);
+export const getNoteByID = (state, noteId) => state.notes.find((note) => note._id === noteId);
+export const getCurrentNote = (state) => state.currentNote;
